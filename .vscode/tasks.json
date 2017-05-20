@@ -1,0 +1,49 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "tasks": [
+        {
+		// test task - Ctrl-T
+		"taskName": "py.test run",
+		"isTestCommand": true,
+        "command": "py.test",
+        "isShellCommand": true,
+        "args": ["-vv", "--tb=native", "${workspaceRoot}"],
+        "problemMatcher": [
+            {
+                "fileLocation": "absolute",
+                "pattern": [
+                    {
+                        "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
+                        "file": 1,
+                        "line": 2
+                    },
+                    {
+                        "regexp": "^\\s+(.*)$",
+                        "message": 1
+                    }
+                ]
+            }
+            // ,
+            // {
+            //     "fileLocation": "absolute",
+            //     "pattern": [
+            //         {
+            //             "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
+            //             "file": 1,
+            //             "line": 2
+            //         },
+            //         {
+            //             "regexp": "^\\s*(.*)$"
+            //         },
+            //         {
+            //             "regexp": "^\\s*AssertionError:(.*)$",
+            //             "message": 1
+            //         }
+            //     ]
+            // }
+        ]
+        }
+    ]
+}

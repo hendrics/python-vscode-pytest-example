@@ -1,0 +1,9 @@
+{
+    "python.unitTest.pyTestArgs": [
+        ".",
+        "-vv",
+        "--tb=native"
+    ],
+    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.nosetestsEnabled": false
+}
