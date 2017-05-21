@@ -32,9 +32,11 @@ In addition using `-k` option of `pytest` one can just do:
 As can be seen in [.vscode/tasks.json](./.vscode/tasks.json)
 it is possible to create several test tasks.
 
-`vscode` lets you see all the task if you call command menu (osx: "⇧⌘P", win: "Ctrl+Shift+P" linux: "Ctrl+Shift+P") and type `Run Task`, select `Tasks:Run Task` you will see the list of tasks to run. Alternatively from the files menu  (osx: "⌘P", win: "Ctrl+P" linux: "Ctrl+P") just type `task ` and get the same list.
+`vscode` lets you see all the task if you call command menu (osx: "⇧⌘P", win: "Ctrl+Shift+P" linux: "Ctrl+Shift+P") and type `Run Task`, select `Tasks:Run Task` you will see the list of tasks to run. Alternatively from the files menu  (osx: "⌘P", win: "Ctrl+P" linux: "Ctrl+P") just type `task ` (add the space ` ` at then end) and get the same list.
 
-Now, the ability to run tests frequently as you develop is an amazing productivity boost. Incorporating a keyboard shortcut to run a particular set of tests is very handy. There are set of default tasks: `Run Build Task` and `Run Test Task`. You can assign the shortcuts for these actions. If you have several test tasks then only the first one from the list will be run. At this stage it is not possible to have an acction to re-run the "last" task. There's an open issue for this https://github.com/Microsoft/vscode/issues/25310.
+![](./.imgs/vscode_list_of_tasks.png)
+
+ Ability to run tests frequently as you develop is an amazing productivity boost. Incorporating a keyboard shortcut to run a particular set of tests is very handy. There are set of default tasks: `Run Build Task` and `Run Test Task`. You can assign the shortcuts for these actions. If you have several test tasks then only the first one from the list will be run. At this stage it is not possible to have an acction to re-run the "last" task. There's an open issue for this https://github.com/Microsoft/vscode/issues/25310.
 
 There's a workaround to assign a separate shortcut to each task. It is also discussed in the [issue](https://github.com/Microsoft/vscode/issues/25310).
 
