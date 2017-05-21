@@ -10,7 +10,8 @@ See [.vscode/tasks.json](./.vscode/tasks.json) file to see how
 
 We have to define a custom `problemMatcher` to be able to match the location
 of the assert in the file. We also need to use `pytest` option `--tb=native`
-to get the default traceback.
+to get the default traceback. You can of course add extra options
+by other means, e.g. `pytest.ini` file. See [pytest customization options](https://docs.pytest.org/en/latest/customize.html)
 
 ```json
 {
