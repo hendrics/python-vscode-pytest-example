@@ -8,6 +8,54 @@ issues into the `problems view` and highlighted in the `code view`.
 See [.vscode/tasks.json](./.vscode/tasks.json) file to see how
 `pytest` and problem matchers are configured.
 
+We have to define a custom `problemMatcher` to be able to match the location
+of the assert in the file. We also need to use `pytest` option `--tb=native`
+to get the default traceback.
+
+```json
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "python",
+    "echoCommand": true,
+    "suppressTaskName": true,
+    "isShellCommand": true,
+    "options": {
+        "env": {
+            "PYTEST_ADDOPTS" : "-vv --tb=native"
+        }
+    },
+    "tasks": [
+        {
+            "taskName": "tests",
+            "isTestCommand": true,
+            "args": [
+                "-m",
+                "pytest",
+                "${workspaceRoot}"
+            ],
+            "problemMatcher": [
+                {
+                    "fileLocation": "absolute",
+                    "pattern": [
+                        {
+                            "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
+                            "file": 1,
+                            "line": 2
+                        },
+                        {
+                            "regexp": "^\\s+(.*)$",
+                            "message": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
 ### At project start
 
 ![](./.imgs/vscode_test_not_run_yet.png)
@@ -27,10 +75,12 @@ It is a good idea to separate tests into several categories: unit, integration a
 
 You can organise different tests types into different subdirectories inside the `tests/` directory. As long as every directory has `__init__.py` file, `pytest` has no issue finding all the tests.
 In addition using `-k` option of `pytest` one can just do:
-`pytest -k unit_tests` to run only tests from the `unit_tests` directory, as it simply acts as the filter.
+`pytest -k unit_tests` to run only tests from the `unit_tests` directory, as it simply acts as a filter.
 
 As can be seen in [.vscode/tasks.json](./.vscode/tasks.json)
-it is possible to create several test tasks.
+it is possible to create several test tasks. The downside at the moment is that you
+have to recreate `problemMatcher` section inside each task as there's no property inheritance
+from the global `problemMatcher` and the local ones until [this issue is fixed](https://github.com/Microsoft/vscode/issues/24865).
 
 `vscode` lets you see all the task if you call command menu (osx: "⇧⌘P", win: "Ctrl+Shift+P" linux: "Ctrl+Shift+P") and type `Run Task`, select `Tasks:Run Task` you will see the list of tasks to run. Alternatively from the files menu  (osx: "⌘P", win: "Ctrl+P" linux: "Ctrl+P") just type `task ` (add the space ` ` at then end) and get the same list.
 
@@ -95,3 +145,5 @@ a message spread across multiple lines. There's an outstanding issue for this. h
 "Problem matchers for error messages that span multiple lines #9635"
 
 > NOTE: https://github.com/Microsoft/vscode/issues/25310 to be able to re-run the last used task with a keyboard shortcut.
+
+> NOTE: https://github.com/Microsoft/vscode/issues/24865 Global task properties. Inherit or name problem matchers.

@@ -2,68 +2,138 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "0.1.0",
-    "problemMatcher": [
-        {
-            "fileLocation": "absolute",
-            "pattern": [
-                {
-                    "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
-                    "file": 1,
-                    "line": 2
-                },
-                {
-                    "regexp": "^\\s+(.*)$",
-                    "message": 1
-                }
-            ]
+    "command": "python",
+    "echoCommand": true,
+    "suppressTaskName": true,
+    "isShellCommand": true,
+    "options": {
+        "env": {
+            "PYTEST_ADDOPTS" : "-vv --tb=native"
         }
-    ],
+    },
     "tasks": [
         {
             "taskName": "tests",
             "isTestCommand": true,
-            "command": "py.test",
-            "isShellCommand": true,
             "args": [
-                "-vv",
-                "--tb=native",
+                "-m",
+                "pytest",
                 "${workspaceRoot}"
+            ],
+            "problemMatcher": [
+                {
+                    "fileLocation": "absolute",
+                    "pattern": [
+                        {
+                            "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
+                            "file": 1,
+                            "line": 2
+                        },
+                        {
+                            "regexp": "^\\s+(.*)$",
+                            "message": 1
+                        }
+                    ]
+                }
             ]
         },
         {
             "taskName": "unit_tests",
             "isTestCommand": true,
-            "command": "py.test",
+            "command": "python",
+            "echoCommand": true,
             "isShellCommand": true,
             "args": [
-                "-vv",
-                "--tb=native",
-                "-k", "unit_tests",
+                "-m",
+                "pytest",
                 "${workspaceRoot}"
+            ],
+            "options": {
+                "env": {
+                    "PYTEST_ADDOPTS" : "-vv --tb=native -k unit_tests"
+                }
+            },
+            "problemMatcher": [
+                {
+                    "fileLocation": "absolute",
+                    "pattern": [
+                        {
+                            "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
+                            "file": 1,
+                            "line": 2
+                        },
+                        {
+                            "regexp": "^\\s+(.*)$",
+                            "message": 1
+                        }
+                    ]
+                }
             ]
         },
         {
             "taskName": "integration_tests",
             "isTestCommand": true,
-            "command": "py.test",
+            "command": "python",
+            "echoCommand": true,
             "isShellCommand": true,
             "args": [
-                "-vv",
-                "--tb=native",
-                "-k", "integration_tests",
+                "-m",
+                "pytest",
                 "${workspaceRoot}"
+            ],
+            "options": {
+                "env": {
+                    "PYTEST_ADDOPTS" : "-vv --tb=native -k integration_tests"
+                }
+            },
+            "problemMatcher": [
+                {
+                    "fileLocation": "absolute",
+                    "pattern": [
+                        {
+                            "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
+                            "file": 1,
+                            "line": 2
+                        },
+                        {
+                            "regexp": "^\\s+(.*)$",
+                            "message": 1
+                        }
+                    ]
+                }
             ]
         },
         {
             "taskName": "system_tests",
             "isTestCommand": true,
-            "command": "py.test",
+            "command": "python",
+            "echoCommand": true,
             "isShellCommand": true,
             "args": [
-                "-vv",
-                "--tb=native",
-                "-k", "system_tests",
+                "-m",
+                "pytest",
                 "${workspaceRoot}"
+            ],
+            "options": {
+                "env": {
+                    "PYTEST_ADDOPTS" : "-vv --tb=native -k system_tests"
+                }
+            },
+            "problemMatcher": [
+                {
+                    "fileLocation": "absolute",
+                    "pattern": [
+                        {
+                            "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
+                            "file": 1,
+                            "line": 2
+                        },
+                        {
+                            "regexp": "^\\s+(.*)$",
+                            "message": 1
+                        }
+                    ]
+                }
             ]
         }
     ]
