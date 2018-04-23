@@ -31,9 +31,9 @@ by other means, e.g. `pytest.ini` file. See [pytest customization options](https
           },
           "type": "shell",
           "options": {
-            "env": {
-              "PYTEST_ADDOPTS" : "-vv --tb=native"
-            }
+              "env": {
+                  "PYTEST_ADDOPTS" : "-vv --tb=native"
+              }
           },
           "args": [
               "-m",
