@@ -31,13 +31,14 @@ by other means, e.g. `pytest.ini` file. See [pytest customization options](https
           },
           "type": "shell",
           "options": {
-              "env": {
-                  "PYTEST_ADDOPTS" : "-vv --tb=native"
-              }
+            "env": {
+              "PYTEST_ADDOPTS" : "-vv --tb=native"
+            }
           },
           "args": [
               "-m",
-              "pytest",
+              "pytest_watch",
+              "--runner=${config:python.pythonPath} -m pytest",
               "${workspaceRoot}"
           ],
           "problemMatcher": [
@@ -53,9 +54,15 @@ by other means, e.g. `pytest.ini` file. See [pytest customization options](https
                           "regexp": "^\\s+(.*)$",
                           "message": 1
                       }
-                  ]
+                  ],
+                  "background": {
+                    "activeOnStart": false,
+                    "beginsPattern": "^=+ test session starts =+$",
+                    "endsPattern": "^=+ [\\w ]+ in \\d+.\\d\\d seconds =+$"
+                  }
               }
-          ]
+          ],
+          "isBackground": true
       }
   ]
 }
