@@ -58,7 +58,7 @@ by other means, e.g. `pytest.ini` file. See [pytest customization options](https
                     "background": {
                         "activeOnStart": false,
                         "beginsPattern": "^=+ test session starts =+$",
-                        "endsPattern": "^=+ [\\w ]+ in \\d+.\\d\\d seconds =+$"
+                        "endsPattern": "^=+ [\\w, ]+ in \\d+\\.\\d\\d seconds =+$"
                     }
                 }
             ],
