@@ -15,49 +15,49 @@ by other means, e.g. `pytest.ini` file. See [pytest customization options](https
 
 ```json5
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
-  "version": "2.0.0",
-  "tasks": [
-      {
-        "command": "${config:python.pythonPath}",
-        "label": "tests",
-          "group": "test",
-          "presentation": {
-            "echo": true,
-            "reveal": "always",
-            "focus": false,
-            "panel": "shared"
-          },
-          "type": "shell",
-          "options": {
-              "env": {
-                  "PYTEST_ADDOPTS" : "-vv --tb=native"
-              }
-          },
-          "args": [
-              "-m",
-              "pytest",
-              "${workspaceRoot}"
-          ],
-          "problemMatcher": [
-              {
-                  "fileLocation": "absolute",
-                  "pattern": [
-                      {
-                          "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
-                          "file": 1,
-                          "line": 2
-                      },
-                      {
-                          "regexp": "^\\s+(.*)$",
-                          "message": 1
-                      }
-                  ]
-              }
-          ]
-      }
-  ]
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "command": "${config:python.pythonPath}",
+            "label": "tests",
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "type": "shell",
+            "options": {
+                "env": {
+                    "PYTEST_ADDOPTS": "-vv --tb=native"
+                }
+            },
+            "args": [
+                "-m",
+                "pytest",
+                "${workspaceRoot}"
+            ],
+            "problemMatcher": [
+                {
+                    "fileLocation": "absolute",
+                    "pattern": [
+                        {
+                            "regexp": "^\\s+File \"(.*)\", line (\\d+), in (.*)$",
+                            "file": 1,
+                            "line": 2
+                        },
+                        {
+                            "regexp": "^\\s+(.*)$",
+                            "message": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }
 ```
 
