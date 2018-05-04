@@ -13,27 +13,32 @@ of the assert in the file. We also need to use `pytest` option `--tb=native`
 to get the default traceback. You can of course add extra options
 by other means, e.g. `pytest.ini` file. See [pytest customization options](https://docs.pytest.org/en/latest/customize.html)
 
-```json
+```json5
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
-    "version": "0.1.0",
-    "command": "python",
-    "echoCommand": true,
-    "suppressTaskName": true,
-    "isShellCommand": true,
-    "options": {
-        "env": {
-            "PYTEST_ADDOPTS" : "-vv --tb=native"
-        }
-    },
+    "version": "2.0.0",
     "tasks": [
         {
-            "taskName": "tests",
-            "isTestCommand": true,
+            "command": "${config:python.pythonPath}",
+            "label": "tests",
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "type": "shell",
+            "options": {
+                "env": {
+                    "PYTEST_ADDOPTS": "-vv --tb=native"
+                }
+            },
             "args": [
                 "-m",
-                "pytest",
+                "pytest_watch",
+                "--runner=${config:python.pythonPath} -m pytest",
                 "${workspaceRoot}"
             ],
             "problemMatcher": [
@@ -49,9 +54,15 @@ by other means, e.g. `pytest.ini` file. See [pytest customization options](https
                             "regexp": "^\\s+(.*)$",
                             "message": 1
                         }
-                    ]
+                    ],
+                    "background": {
+                        "activeOnStart": false,
+                        "beginsPattern": "^=+ test session starts =+$",
+                        "endsPattern": "^=+ [\\w, ]+ in \\d+\\.\\d\\d seconds =+$"
+                    }
                 }
-            ]
+            ],
+            "isBackground": true
         }
     ]
 }
